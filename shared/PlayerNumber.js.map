@@ -1,1 +1,1 @@
-{"version":3,"file":"PlayerNumber.js","sourceRoot":"","sources":["PlayerNumber.ts"],"names":["PlayerNumber"],"mappings":"AAAA,IAAK,YAGJ;AAHD,WAAK,YAAY;IACbA,6CAAGA,CAAAA;IACHA,6CAAGA,CAAAA;AACPA,CAACA,EAHI,YAAY,KAAZ,YAAY,QAGhB;AAED,iBAAS,YAAY,CAAC"}
+{"version":3,"file":"PlayerNumber.js","sourceRoot":"","sources":["PlayerNumber.ts"],"names":["PlayerNumber"],"mappings":";IAAA,IAAK,YAGJ;IAHD,WAAK,YAAY;QACbA,6CAAGA,CAAAA;QACHA,6CAAGA,CAAAA;IACPA,CAACA,EAHI,YAAY,KAAZ,YAAY,QAGhB;IAED,OAAS,YAAY,CAAC"}

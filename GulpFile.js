@@ -3,6 +3,16 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
+//var ts = require('gulp-typescript');
+
+//gulp.task('default', function () {
+//    return gulp.src(['app.ts', '!client/**/*.ts', '!server/**/*.ts' ])
+//        .pipe(ts({
+//        noImplicitAny: true,
+//        out: 'output.js'
+//    }))
+//        .pipe(gulp.dest('built/local'));
+//});
 
 
 gulp.task('sass', function () {

@@ -29204,6 +29204,10 @@
 	            return false;
 	        }
 	    };
+	    Match.prototype.declareWinner = function (player) {
+	        this.matchWinner = player;
+	        this.winnersScore = player.score;
+	    };
 	    return Match;
 	})();
 	module.exports = Match;

@@ -1,3 +1,4 @@
+/// <reference path="./typings/tsd.d.ts" />
 var express = require('express');
 var http = require('http');
 var io = require('socket.io');
@@ -31,6 +32,12 @@ app.get('/two-down', function (req, res) {
     res.sendStatus(200);
     socketio.emit('two-down', { for: 'everyone' });
 });
+app.get('/log', function (req, res) {
+    res.sendStatus(200);
+});
+app.post('/log', function (req, res) {
+    console.log(req);
+    res.send(200, JSON.stringify(req));
+});
 server.listen(port);
 console.log('This express app is listening on %s', port);
-//# sourceMappingURL=app.js.map

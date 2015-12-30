@@ -51,6 +51,14 @@ app.get('/two-down', function (req, res) {
     socketio.emit('two-down', { for: 'everyone' });
 });
 
+app.get('/log', function (req, res) {
+    res.sendStatus(200);
+});
+
+app.post('/log', function (req, res) {
+    res.send(200, JSON.stringify(req)); 
+});
+
 server.listen(port);
 console.log('This express app is listening on %s', port);
 

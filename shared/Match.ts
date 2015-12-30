@@ -70,12 +70,14 @@ class Match {
         }
         else {
             return false;
-        }
-        
+        }        
 
     }
 
-    
+    private declareWinner(player: Player): void {
+        this.matchWinner = player;
+        this.winnersScore = player.score;
+    }    
 
 }
 
