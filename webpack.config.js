@@ -31,7 +31,11 @@ module.exports = {
             {
                 test: /\.scss$/,
                 loader: "style-loader!css-loader!sass-loader"
-            }
+            },
+            //{
+            //    test: /\.html$/,
+            //    loader: 'ngtemplate?pathSep=\\!html'
+            //}
             //{
             //    test: /\.html$/,
             //    loader: 'ngtemplate?relativeTo=' + (path.resolve(__dirname, './app')) + '/!html'

@@ -1,3 +1,5 @@
+/// <reference path="./typings/tsd.d.ts" />
+
 import express = require('express');
 import http = require('http');
 import io = require('socket.io');
@@ -18,6 +20,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 let server = http.createServer(app);
 let socketio = io(http).listen(server);
+
+
+
+
+
 
 
 app.get('/', function (req, res) {

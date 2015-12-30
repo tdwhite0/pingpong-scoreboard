@@ -1,0 +1,13 @@
+﻿<h1>Match History</h1>
+<table>
+    <tr>
+        <th>Player One</th>
+        <th>Player Two</th>
+    </tr>
+    <tr ng-repeat="entry in vm.entries.points">
+      
+        <td><span ng-if="entry._pointWinner === 'PlayerOne'">OK</span></td>
+        <td><span ng-if="entry._pointWinner === 'PlayerTwo'">OK</span></td>
+    </tr>
+
+</table>
