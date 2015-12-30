@@ -1,4 +1,4 @@
-/// <reference path="../typings/tsd.d.ts" />
+"use strict";
 var angular = require("angular");
 require("./scoreboard/scoreboard");
 require("./App.scss");

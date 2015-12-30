@@ -1,3 +1,4 @@
+"use strict";
 var angular = require('angular');
 require('angular-socket-io');
 require("./scoreboard.scss");
@@ -21,7 +22,6 @@ var Scoreboard;
         };
         Player.prototype.decrementScore = function () {
             this.score--;
-            //cant go below zero
             if (this.score < 0) {
                 this.score = 0;
             }

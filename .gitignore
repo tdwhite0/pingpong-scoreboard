@@ -4,3 +4,4 @@ npm-debug.log
 .vs/
 bin/
 obj/
+public/bundle.js

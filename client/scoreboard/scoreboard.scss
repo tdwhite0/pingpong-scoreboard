@@ -90,13 +90,26 @@ $gris: #8c8c8c;
     padding: 40px 34px 25px 34px;
     
     img {
-        width: 100%;    
+        width: 100%;     
     }
     
     h2 {
         color: #333;
         font-size: 1em;
         margin: 8px 0 0 0;
+    }
+
+    h1 i.symbolText {
+        font-size:16px;
+        border:1px solid white;
+    }
+
+    h1 i.symbolText:hover{
+        border:1px solid lightgray;
+    }
+
+    .fake-link:hover {
+        cursor:pointer;
     }
 }
 
