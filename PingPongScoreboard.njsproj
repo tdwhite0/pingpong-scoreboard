@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{fb784607-2431-4ee6-892f-51ae5b1a2dcd}</ProjectGuid>
     <ProjectHome />
-    <ProjectView>ShowAllFiles</ProjectView>
+    <ProjectView>ProjectFiles</ProjectView>
     <StartupFile>GulpFile.js</StartupFile>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
@@ -34,7 +34,12 @@
     <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="client\App.ts" />
     <TypeScriptCompile Include="client\lib.d.ts" />
-    <TypeScriptCompile Include="shared\ScoreButton.ts" />
+    <TypeScriptCompile Include="shared\Match.ts" />
+    <TypeScriptCompile Include="shared\MatchHistory.ts" />
+    <TypeScriptCompile Include="shared\Player.ts" />
+    <TypeScriptCompile Include="shared\PlayerNumber.ts" />
+    <TypeScriptCompile Include="shared\Point.ts" />
+    <TypeScriptCompile Include="shared\WinConditions.ts" />
     <TypeScriptCompile Include="typings\tsd.d.ts" />
     <Content Include="client\scoreboard\scoreboard.html" />
     <TypeScriptCompile Include="client\scoreboard\scoreboard.ts" />

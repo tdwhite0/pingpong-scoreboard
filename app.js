@@ -1,4 +1,4 @@
-/// <reference path="typings/tsd.d.ts" />
+/// <reference path="./typings/tsd.d.ts" />
 var express = require('express');
 var http = require('http');
 var io = require('socket.io');

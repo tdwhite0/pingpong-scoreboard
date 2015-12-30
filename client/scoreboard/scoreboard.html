@@ -5,8 +5,8 @@
                 <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/97/FIGC_logo.svg/706px-FIGC_logo.svg.png" />
                 <h2>ITA</h2>
             <h1>
-                <i class="fa fa-plus symbolText fake-link" ng-click="incrementPlayerScore(playerOne)"></i>
-                <i class="fa fa-minus symbolText fake-link" ng-click="decrementPlayerScore(playerOne)"></i>
+                <i class="fa fa-plus symbolText fake-link" ng-click="vm.awardPoint(0)"></i>
+                <i class="fa fa-minus symbolText fake-link" ng-click="vm.subtractPoint(0)"></i>
             </h1>
             </div>
             <div class="info">
@@ -16,10 +16,10 @@
             <div class="team">
                 <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Royal_Netherlands_Football_Association_Logo.svg/300px-Royal_Netherlands_Football_Association_Logo.svg.png" />
                 <h2>NED</h2>
-            <h1 >
-                <i class="fa fa-plus symbolText fake-link"></i>
-                <i class="fa fa-minus symbolText fake-link"></i>
-            </h1>
+                <h1>
+                    <i class="fa fa-plus symbolText fake-link" ng-click="vm.awardPoint(1)"></i>
+                    <i class="fa fa-minus symbolText fake-link" ng-click="vm.subtractPoint(1)"></i>
+                </h1>
             </div>
         </div>
         <div class="timeline">
