@@ -5,6 +5,7 @@ import angular = require("angular");
 
 
 require("./scoreboard/scoreboard");
+require("./App.scss");
 
 
 var templateUrl = require('ngtemplate!html!./App.html');
