@@ -1,61 +1,37 @@
-"use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var angular = require('angular');
+var PlayerNumber = require("../../shared/PlayerNumber");
+var Match = require("../../shared/Match");
 require('angular-socket-io');
 require("./scoreboard.scss");
 var Scoreboard;
 (function (Scoreboard) {
     var templateUrl = require('ngtemplate!html!./scoreboard.html');
-    var ScoreboardModule = angular.module('Scoreboard', ["btford.socket-io"])
-        .directive('tomDirective', function () {
-        return {
-            template: 'hi damnit'
-        };
-    });
-    var Player = (function () {
-        function Player() {
-            this.score = 0;
-            this.isWinner = false;
-        }
-        Player.prototype.incrementScore = function () {
-            this.score++;
-            return this.score;
-        };
-        Player.prototype.decrementScore = function () {
-            this.score--;
-            if (this.score < 0) {
-                this.score = 0;
-            }
-            return this.score;
-        };
-        return Player;
-    })();
-    var ScoreboardController = (function () {
+    var ScoreboardModule = angular.module('Scoreboard', ["btford.socket-io"]);
+    var ScoreboardController = (function (_super) {
+        __extends(ScoreboardController, _super);
         function ScoreboardController(mySocket) {
             var _this = this;
-            this.playerOne = new Player();
-            this.playerTwo = new Player();
-            this.matchDate = new Date();
+            _super.call(this);
             mySocket.on('one', function () {
-                _this.incrementPlayerScore(_this.playerOne);
+                _this.awardPoint(PlayerNumber.One);
             });
             mySocket.on('one-down', function () {
-                _this.decrementPlayerScore(_this.playerOne);
+                _this.subtractPoint(PlayerNumber.One);
             });
             mySocket.on('two', function () {
-                _this.incrementPlayerScore(_this.playerTwo);
+                _this.awardPoint(PlayerNumber.Two);
             });
             mySocket.on('two-down', function () {
-                _this.decrementPlayerScore(_this.playerTwo);
+                _this.subtractPoint(PlayerNumber.Two);
             });
         }
-        ScoreboardController.prototype.incrementPlayerScore = function (player) {
-            return player.incrementScore();
-        };
-        ScoreboardController.prototype.decrementPlayerScore = function (player) {
-            return player.decrementScore();
-        };
         return ScoreboardController;
-    })();
+    })(Match);
     var ScoreboardDirective = function () {
         return {
             templateUrl: templateUrl,

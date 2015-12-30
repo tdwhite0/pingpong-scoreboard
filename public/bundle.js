@@ -47,10 +47,11 @@
 	/// <reference path="../typings/tsd.d.ts" />
 	var angular = __webpack_require__(1);
 	__webpack_require__(3);
-	__webpack_require__(10);
-	var templateUrl = __webpack_require__(12);
+	__webpack_require__(16);
+	__webpack_require__(18);
+	var templateUrl = __webpack_require__(20);
 	angular.module("PingPong", []);
-	var app = angular.module("PingPong", ["Scoreboard"]);
+	var app = angular.module("PingPong", ["Scoreboard", "MatchHistory"]);
 	app.directive('mainApp', function () {
 	    return {
 	        restrict: 'E',
@@ -29094,64 +29095,40 @@
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var __extends = (this && this.__extends) || function (d, b) {
+	    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+	    function __() { this.constructor = d; }
+	    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+	};
 	var angular = __webpack_require__(1);
-	__webpack_require__(4);
-	__webpack_require__(5);
+	var PlayerNumber = __webpack_require__(4);
+	var Match = __webpack_require__(5);
+	__webpack_require__(10);
+	__webpack_require__(11);
 	var Scoreboard;
 	(function (Scoreboard) {
-	    var templateUrl = __webpack_require__(9);
-	    var ScoreboardModule = angular.module('Scoreboard', ["btford.socket-io"])
-	        .directive('tomDirective', function () {
-	        return {
-	            template: 'hi damnit'
-	        };
-	    });
-	    var Player = (function () {
-	        function Player() {
-	            this.score = 0;
-	            this.isWinner = false;
-	        }
-	        Player.prototype.incrementScore = function () {
-	            this.score++;
-	            return this.score;
-	        };
-	        Player.prototype.decrementScore = function () {
-	            this.score--;
-	            //cant go below zero
-	            if (this.score < 0) {
-	                this.score = 0;
-	            }
-	            return this.score;
-	        };
-	        return Player;
-	    })();
-	    var ScoreboardController = (function () {
+	    var templateUrl = __webpack_require__(15);
+	    var ScoreboardModule = angular.module('Scoreboard', ["btford.socket-io"]);
+	    var ScoreboardController = (function (_super) {
+	        __extends(ScoreboardController, _super);
 	        function ScoreboardController(mySocket) {
 	            var _this = this;
-	            this.playerOne = new Player();
-	            this.playerTwo = new Player();
-	            this.matchDate = new Date();
+	            _super.call(this);
 	            mySocket.on('one', function () {
-	                _this.incrementPlayerScore(_this.playerOne);
+	                _this.awardPoint(PlayerNumber.One);
 	            });
 	            mySocket.on('one-down', function () {
-	                _this.decrementPlayerScore(_this.playerOne);
+	                _this.subtractPoint(PlayerNumber.One);
 	            });
 	            mySocket.on('two', function () {
-	                _this.incrementPlayerScore(_this.playerTwo);
+	                _this.awardPoint(PlayerNumber.Two);
 	            });
 	            mySocket.on('two-down', function () {
-	                _this.decrementPlayerScore(_this.playerTwo);
+	                _this.subtractPoint(PlayerNumber.Two);
 	            });
 	        }
-	        ScoreboardController.prototype.incrementPlayerScore = function (player) {
-	            return player.incrementScore();
-	        };
-	        ScoreboardController.prototype.decrementPlayerScore = function (player) {
-	            return player.decrementScore();
-	        };
 	        return ScoreboardController;
-	    })();
+	    })(Match);
 	    var ScoreboardDirective = function () {
 	        return {
 	            templateUrl: templateUrl,
@@ -29170,6 +29147,151 @@
 
 /***/ },
 /* 4 */
+/***/ function(module, exports) {
+
+	var PlayerNumber;
+	(function (PlayerNumber) {
+	    PlayerNumber[PlayerNumber["One"] = 0] = "One";
+	    PlayerNumber[PlayerNumber["Two"] = 1] = "Two";
+	})(PlayerNumber || (PlayerNumber = {}));
+	module.exports = PlayerNumber;
+
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Player = __webpack_require__(6);
+	var Point = __webpack_require__(7);
+	var MatchHistory = __webpack_require__(8);
+	var PlayerNumber = __webpack_require__(4);
+	var WinConditions = __webpack_require__(9);
+	var Match = (function () {
+	    function Match() {
+	        this.matchDateTime = new Date();
+	        this.matchHistory = new MatchHistory();
+	        this.playerOne = new Player("PlayerOne");
+	        this.playerTwo = new Player("PlayerTwo");
+	    }
+	    Match.prototype.awardPoint = function (playerNumber) {
+	        var scoringPlayer = this.get_player(playerNumber);
+	        this.matchHistory.logPoint(new Point(scoringPlayer));
+	        this.checkWinConditions();
+	        return scoringPlayer.incrementScore();
+	    };
+	    Match.prototype.subtractPoint = function (playerNumber) {
+	        var scoringPlayer = this.get_player(playerNumber);
+	        this.matchHistory.logPoint(new Point(scoringPlayer, true));
+	        this.checkWinConditions();
+	        return scoringPlayer.decrementScore();
+	    };
+	    Match.prototype.get_player = function (playerNumber) {
+	        var thePlayer;
+	        if (playerNumber === PlayerNumber.One) {
+	            thePlayer = this.playerOne;
+	        }
+	        if (playerNumber === PlayerNumber.Two) {
+	            thePlayer = this.playerTwo;
+	        }
+	        return thePlayer;
+	    };
+	    Match.prototype.checkWinConditions = function () {
+	        var haveWinner = WinConditions.player21Win(this.playerOne, this.playerTwo);
+	        if (haveWinner) {
+	            alert('we have a winner');
+	            return true;
+	        }
+	        else {
+	            return false;
+	        }
+	    };
+	    return Match;
+	})();
+	module.exports = Match;
+
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	var Player = (function () {
+	    function Player(name) {
+	        this.score = 0;
+	        this.isWinner = false;
+	        this.name = name;
+	    }
+	    Player.prototype.incrementScore = function () {
+	        this.score++;
+	        return this.score;
+	    };
+	    Player.prototype.decrementScore = function () {
+	        this.score--;
+	        //cant go below zero
+	        if (this.score < 0) {
+	            this.score = 0;
+	        }
+	        return this.score;
+	    };
+	    return Player;
+	})();
+	module.exports = Player;
+
+
+/***/ },
+/* 7 */
+/***/ function(module, exports) {
+
+	var Point = (function () {
+	    function Point(pointWinner, isRemoval) {
+	        this.pointWinner = pointWinner;
+	        this.isRemoval = isRemoval;
+	    }
+	    Object.defineProperty(Point.prototype, "pointWinner", {
+	        set: function (pointWinner) {
+	            this._pointWinner = pointWinner.name;
+	        },
+	        enumerable: true,
+	        configurable: true
+	    });
+	    return Point;
+	})();
+	module.exports = Point;
+
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	var MatchHistory = (function () {
+	    function MatchHistory() {
+	        this.points = new Array();
+	    }
+	    MatchHistory.prototype.logPoint = function (point) {
+	        this.points.push(point);
+	    };
+	    return MatchHistory;
+	})();
+	module.exports = MatchHistory;
+
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	//let player21Win: WinCondition;
+	var player21Win = function (playerOne, playerTwo) {
+	    if (playerOne.score === 21 && playerTwo.score < 21) {
+	        return playerOne;
+	    }
+	    else {
+	        return null;
+	    }
+	};
+	exports.player21Win = player21Win;
+
+
+/***/ },
+/* 10 */
 /***/ function(module, exports) {
 
 	/*
@@ -29278,16 +29400,16 @@
 
 
 /***/ },
-/* 5 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(6);
+	var content = __webpack_require__(12);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(8)(content, {});
+	var update = __webpack_require__(14)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -29304,10 +29426,10 @@
 	}
 
 /***/ },
-/* 6 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(7)();
+	exports = module.exports = __webpack_require__(13)();
 	// imports
 
 
@@ -29318,7 +29440,7 @@
 
 
 /***/ },
-/* 7 */
+/* 13 */
 /***/ function(module, exports) {
 
 	/*
@@ -29374,7 +29496,7 @@
 
 
 /***/ },
-/* 8 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/*
@@ -29628,25 +29750,62 @@
 
 
 /***/ },
-/* 9 */
+/* 15 */
 /***/ function(module, exports) {
 
 	var path = 'C:/dev/pingpong-scoreboard/client/scoreboard/scoreboard.html';
-	var html = "\r\n<div class=\"card\">\r\n    <div class=\"header\">\r\n        <div class=\"team\">\r\n            <img src=\"https://upload.wikimedia.org/wikipedia/en/thumb/9/97/FIGC_logo.svg/706px-FIGC_logo.svg.png\" />\r\n            <h2>ITA</h2>\r\n            <h1>\r\n                <i class=\"fa fa-plus symbolText fake-link\" ng-click=\"incrementPlayerScore(playerOne)\"></i>\r\n                <i class=\"fa fa-minus symbolText fake-link\" ng-click=\"decrementPlayerScore(playerOne)\"></i>\r\n            </h1>\r\n        </div>\r\n        <div class=\"info\">\r\n            <h1>MATCH</h1>\r\n            <p>{{ vm.matchDate | date:'MM/dd/yyyy' }}</p>\r\n        </div>\r\n        <div class=\"team\">\r\n            <img src=\"https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Royal_Netherlands_Football_Association_Logo.svg/300px-Royal_Netherlands_Football_Association_Logo.svg.png\" />\r\n            <h2>NED</h2>\r\n            <h1 >\r\n                <i class=\"fa fa-plus symbolText fake-link\"></i>\r\n                <i class=\"fa fa-minus symbolText fake-link\"></i>\r\n            </h1>\r\n        </div>\r\n    </div>\r\n    <div class=\"timeline\">\r\n        <div class=\"score\">\r\n            <h3 ng-class=\"{ 'winner' : vm.playerOne.score > vm.playerTwo.score }\">{{ vm.playerOne.score }}</h3>\r\n            <h3 ng-class=\"{ 'winner' : vm.playerTwo.score > vm.playerOne.score }\">{{ vm.playerTwo.score }}</h3>\r\n        </div>\r\n    </div>\r\n\r\n</div>\r\n\r\n\r\n\r\n";
+	var html = "\n    <div class=\"card\">\n        <div class=\"header\">\n            <div class=\"team\">\n                <img src=\"https://upload.wikimedia.org/wikipedia/en/thumb/9/97/FIGC_logo.svg/706px-FIGC_logo.svg.png\" />\n                <h2>ITA</h2>\n            <h1>\r\n                <i class=\"fa fa-plus symbolText fake-link\" ng-click=\"incrementPlayerScore(playerOne)\"></i>\r\n                <i class=\"fa fa-minus symbolText fake-link\" ng-click=\"decrementPlayerScore(playerOne)\"></i>\r\n            </h1>\r\n            </div>\n            <div class=\"info\">\n                <h1>MATCH</h1>\n                <p>{{ vm.matchDate | date:'MM/dd/yyyy' }}</p>\n            </div>\n            <div class=\"team\">\n                <img src=\"https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Royal_Netherlands_Football_Association_Logo.svg/300px-Royal_Netherlands_Football_Association_Logo.svg.png\" />\n                <h2>NED</h2>\n            <h1 >\r\n                <i class=\"fa fa-plus symbolText fake-link\"></i>\r\n                <i class=\"fa fa-minus symbolText fake-link\"></i>\r\n            </h1>\r\n            </div>\n        </div>\n        <div class=\"timeline\">\n            <div class=\"score\">\n                <h3 ng-class=\"{ 'winner' : vm.playerOne.score > vm.playerTwo.score }\">{{ vm.playerOne.score }}</h3>\n                <h3 ng-class=\"{ 'winner' : vm.playerTwo.score > vm.playerOne.score }\">{{ vm.playerTwo.score }}</h3>\n            </div>\n        </div>\n        \n        <match-history entries=\"vm.matchHistory\"></match-history>\n    </div>\n\n\n\n\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
 /***/ },
-/* 10 */
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var angular = __webpack_require__(1);
+	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"angular-filter\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var template = __webpack_require__(17);
+	var HistoryDisplayController = (function () {
+	    function HistoryDisplayController() {
+	        console.log(this);
+	    }
+	    return HistoryDisplayController;
+	})();
+	angular.module("MatchHistory", ["angular.filter"]);
+	var MatchHistoryDirective = function () {
+	    return {
+	        templateUrl: template,
+	        controller: HistoryDisplayController,
+	        controllerAs: "vm",
+	        bindToController: true,
+	        scope: {
+	            entries: '='
+	        }
+	    };
+	};
+	angular.module("MatchHistory").directive("matchHistory", MatchHistoryDirective);
+
+
+/***/ },
+/* 17 */
+/***/ function(module, exports) {
+
+	var path = 'C:/dev/pingpong-scoreboard/client/historyDisplay/historyDisplay.html';
+	var html = "<h1>Match History</h1>\n<table>\n    <tr>\n        <th>Player One</th>\n        <th>Player Two</th>\n    </tr>\n    <tr ng-repeat=\"entry in vm.entries.points\">\n      \n        <td><span ng-if=\"entry._pointWinner === 'PlayerOne'\">OK</span></td>\n        <td><span ng-if=\"entry._pointWinner === 'PlayerTwo'\">OK</span></td>\n    </tr>\n\n</table>";
+	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
+	module.exports = path;
+
+/***/ },
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(11);
+	var content = __webpack_require__(19);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
-	var update = __webpack_require__(8)(content, {});
+	var update = __webpack_require__(14)(content, {});
 	if(content.locals) module.exports = content.locals;
 	// Hot Module Replacement
 	if(false) {
@@ -29663,10 +29822,10 @@
 	}
 
 /***/ },
-/* 11 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
-	exports = module.exports = __webpack_require__(7)();
+	exports = module.exports = __webpack_require__(13)();
 	// imports
 
 
@@ -29677,11 +29836,11 @@
 
 
 /***/ },
-/* 12 */
+/* 20 */
 /***/ function(module, exports) {
 
 	var path = 'C:/dev/pingpong-scoreboard/client/App.html';
-	var html = "<div>\r\n    <scoreboard></scoreboard>\r\n\r\n</div>";
+	var html = "<div>\n    <scoreboard></scoreboard>\n\n\n</div>";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 

@@ -1,4 +1,11 @@
 import angular = require('angular');
+import Player = require("../../shared/Player");
+import PlayerNumber = require("../../shared/PlayerNumber");
+import MatchHistory = require("../../shared/MatchHistory");
+import Point = require("../../shared/Point");
+import Match = require("../../shared/Match");
+
+
 require('angular-socket-io');
 require("./scoreboard.scss");
 
@@ -6,82 +13,31 @@ require("./scoreboard.scss");
 export module Scoreboard {
     var templateUrl = require('ngtemplate!html!./scoreboard.html');
 
-    let ScoreboardModule = angular.module('Scoreboard', ["btford.socket-io"])
-        .directive('tomDirective', function (): any {
-            return {
-                template: 'hi damnit'
-            }
-        });
-
-
-
-    class Player {
-
-        private score: number = 0;
-        public isWinner: boolean = false;
-
-        public incrementScore(): number {
-
-            this.score++;          
-
-            return this.score;
-        }
-
-        public decrementScore(): number {
-
-            this.score--;
-
-            //cant go below zero
-            if (this.score < 0) {
-                this.score = 0;
-            }
-            return this.score;
-        }
-
-
-    }
-
-    class ScoreboardController {
-
-        private playerOne: Player = new Player();
-        private playerTwo: Player = new Player();
-
-        private matchDate: Date = new Date();
+    let ScoreboardModule = angular.module('Scoreboard', ["btford.socket-io"]);    
+  
+    class ScoreboardController extends Match   {       
 
         constructor(mySocket) {           
 
+            super();
+
             mySocket.on('one', () => {
-                this.incrementPlayerScore(this.playerOne);
+                this.awardPoint(PlayerNumber.One);
             });
 
             mySocket.on('one-down', () => {
-                this.decrementPlayerScore(this.playerOne);
+                this.subtractPoint(PlayerNumber.One);
             });
 
             mySocket.on('two', () => {
-                this.incrementPlayerScore(this.playerTwo);
+                this.awardPoint(PlayerNumber.Two);
             });
 
             mySocket.on('two-down', () => {
-                this.decrementPlayerScore(this.playerTwo);
+                this.subtractPoint(PlayerNumber.Two);
             });
             
         }
-
-        public incrementPlayerScore(player : Player): number {
-
-            return player.incrementScore();
-
-        }
-
-        public decrementPlayerScore(player: Player): number {
-
-            return player.decrementScore();
-
-        }
-
-       
-
         
     }
 
@@ -91,7 +47,7 @@ export module Scoreboard {
             controller: ScoreboardController,
             restrict: 'E',
             controllerAs: 'vm',
-            bindToController: true
+            bindToController: true  
         };
     };
 
