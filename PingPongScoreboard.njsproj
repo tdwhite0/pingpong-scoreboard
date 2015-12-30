@@ -17,7 +17,8 @@
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
     <NodeExeArguments>app</NodeExeArguments>
     <StartWebBrowser>True</StartWebBrowser>
-    <LaunchUrl>http://localhost:3000</LaunchUrl>
+    <LaunchUrl>
+    </LaunchUrl>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />

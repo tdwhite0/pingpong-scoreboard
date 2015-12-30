@@ -1,10 +1,18 @@
-﻿{
+{
   "compilerOptions": {
     "target": "es5",
     "sourceMap": true
   },
+  "filesGlob": [
+    "client/*.ts",
+    "client/**/*.ts"
+  ],
   "files": [
-    "typings/tsd.d.ts",
-    "client/lib.d.ts"
-  ]
+    "client/App.ts",
+    "client/lib.d.ts",
+    "client/scoreboard/scoreboard.ts"
+  ],
+  "atom": {
+    "rewriteTsconfig": true
+  }
 }
