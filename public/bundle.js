@@ -47,8 +47,8 @@
 	var angular = __webpack_require__(1);
 	__webpack_require__(3);
 	__webpack_require__(16);
-	__webpack_require__(19);
-	var templateUrl = __webpack_require__(21);
+	__webpack_require__(20);
+	var templateUrl = __webpack_require__(22);
 	angular.module("PingPong", []);
 	var app = angular.module("PingPong", ["Scoreboard", "MatchHistory"]);
 	app.directive('mainApp', function () {
@@ -29802,10 +29802,10 @@
 
 /***/ },
 /* 18 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	var path = 'C:/Users/twhite/Documents/GitHub/pingpong-scoreboard/client/historyDisplay/historyDisplay.html';
-	var html = "<h1>Match History</h1>\r\n<table>\r\n    <tr>\r\n        <th>Player One</th>\r\n        <th>Player Two</th>\r\n    </tr>\r\n    <tr ng-repeat=\"entry in vm.entries.points\">\r\n      \r\n        <td><span ng-if=\"entry._pointWinner === 'PlayerOne'\">OK</span></td>\r\n        <td><span ng-if=\"entry._pointWinner === 'PlayerTwo'\">OK</span></td>\r\n    </tr>\r\n\r\n</table>";
+	var html = "<h1>Match History</h1>\r\n<table>\r\n    <tr>\r\n        <th>Player One</th>\r\n        <th>Player Two</th>\r\n    </tr>\r\n    <tr ng-repeat=\"entry in vm.entries.points\">\r\n      \r\n        <td><span ng-if=\"entry._pointWinner === 'PlayerOne'\"><img src=\"" + __webpack_require__(19) + "\" /></span></td>\r\n        <td><span ng-if=\"entry._pointWinner === 'PlayerTwo'\"><img src=\"" + __webpack_require__(19) + "\" /></span></td>\r\n    </tr>\r\n\r\n</table>";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
@@ -29813,10 +29813,16 @@
 /* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
+	module.exports = __webpack_require__.p + "d7f402d01aff2ce1a9b275e3c42a98e1.jpg";
+
+/***/ },
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(20);
+	var content = __webpack_require__(21);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(14)(content, {});
@@ -29836,7 +29842,7 @@
 	}
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(13)();
@@ -29850,7 +29856,7 @@
 
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports) {
 
 	var path = 'C:/Users/twhite/Documents/GitHub/pingpong-scoreboard/client/App.html';
