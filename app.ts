@@ -1,3 +1,5 @@
+/// <reference path="typings/tsd.d.ts" />
+
 import express = require('express');
 import http = require('http');
 import io = require('socket.io');

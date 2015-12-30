@@ -30,6 +30,7 @@
     <Content Include="tsd.json" />
     <Compile Include="GulpFile.js" />
     <Compile Include="index.js" />
+    <TypeScriptCompile Include="app.ts" />
     <TypeScriptCompile Include="client\App.ts" />
     <TypeScriptCompile Include="client\lib.d.ts" />
     <TypeScriptCompile Include="shared\ScoreButton.ts" />
