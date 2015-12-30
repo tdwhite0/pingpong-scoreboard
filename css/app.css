@@ -1,0 +1,367 @@
+body {
+  background-color: #e74a1f; }
+
+body {
+  background: #f3f3f3;
+  font-family: 'Montserrat', sans-serif; }
+
+* {
+  box-sizing: border-box; }
+
+.container {
+  margin: 50px auto;
+  width: 70%;
+  max-width: 885px; }
+
+.row {
+  width: 100%;
+  overflow: hidden; }
+
+.fl {
+  float: left; }
+
+.fr {
+  float: right; }
+
+.right {
+  text-align: right; }
+
+.left {
+  text-align: left; }
+
+.card {
+  width: 380px;
+  background: #fcfcfc;
+  border-radius: 5px;
+  margin-bottom: 100px;
+  float: left;
+  margin: 0 30px; }
+
+.header {
+  width: 100%;
+  height: 150px;
+  background: #FFF;
+  box-shadow: 0 1px 4px #eaeaea;
+  border-radius: 5px 5px 0 0; }
+
+#nav {
+  height: 70px;
+  background: #313643;
+  width: 100%;
+  border-radius: 0 0 5px 5px;
+  float: left; }
+  #nav a {
+    width: 25%;
+    display: block;
+    padding: 16px 20px;
+    text-align: center;
+    float: left; }
+    #nav a img {
+      width: 40px; }
+
+.team, .info {
+  float: left; }
+
+.team {
+  width: 105px;
+  text-align: center;
+  padding: 40px 34px 25px 34px; }
+  .team img {
+    width: 100%; }
+  .team h2 {
+    color: #333;
+    font-size: 1em;
+    margin: 8px 0 0 0; }
+  .team h1 i.symbolText {
+    font-size: 16px;
+    border: 1px solid white; }
+  .team h1 i.symbolText:hover {
+    border: 1px solid lightgray; }
+  .team .fake-link:hover {
+    cursor: pointer; }
+
+.info {
+  width: 170px;
+  text-align: center;
+  padding-top: 40px; }
+  .info h1 {
+    font-size: 1em;
+    color: #8c8c8c;
+    margin-top: 0; }
+  .info p {
+    font-size: 0.9em;
+    margin: 5px 0; }
+
+.timeline {
+  position: relative;
+  padding: 60px 40px 20px 40px;
+  float: left;
+  width: 100%; }
+  .timeline .score {
+    width: 170px;
+    height: 85px;
+    overflow: hidden;
+    position: absolute;
+    top: -50px;
+    left: 105px;
+    box-shadow: 0 3px 15px #eaeaea; }
+    .timeline .score h3 {
+      font-size: 3em;
+      color: #333;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      padding: 13px 20px;
+      width: 50%;
+      text-align: center;
+      background: #fcfcfc;
+      margin: 0;
+      float: left; }
+    .timeline .score .winner {
+      background: #7533e2;
+      color: #FFF; }
+  .timeline .col {
+    width: 50%; }
+    .timeline .col .event {
+      height: 40px;
+      background: #FFF;
+      box-shadow: 0 1px 4px #eaeaea;
+      padding: 8px 10px;
+      color: #8c8c8c;
+      margin-bottom: 20px;
+      display: inline-block; }
+      .timeline .col .event span {
+        display: block;
+        margin-top: 3px;
+        text-align: right; }
+        .timeline .col .event span strong {
+          color: #333; }
+      .timeline .col .event img {
+        width: 15px;
+        margin-right: 9px; }
+      .timeline .col .event img.fl {
+        margin-right: 0;
+        margin-left: 9px; }
+      .timeline .col .event .goal {
+        margin-top: 4px; }
+
+.header > h1 {
+  text-align: center;
+  font-size: 1em;
+  color: #8c8c8c;
+  margin: 0 0 50px 0;
+  padding-top: 40px; }
+
+.tabs a {
+  display: inline-block;
+  width: 50%;
+  color: #333;
+  font-size: 1em;
+  margin: 0;
+  text-align: center;
+  float: left;
+  padding-bottom: 17px;
+  text-decoration: none; }
+  .tabs a.selected {
+    border-bottom: 5px solid #7533e2; }
+
+.formation {
+  height: 464px;
+  padding: 40px; }
+  .formation .field {
+    background: url("http://i.imgur.com/pt3Qdcs.png") center center no-repeat;
+    height: 386px;
+    background-size: contain; }
+  .formation .player {
+    text-align: center;
+    margin-bottom: 20px; }
+    .formation .player img {
+      width: 45px; }
+    .formation .player p {
+      text-align: center;
+      margin: 0;
+      font-size: 0.8em;
+      color: #666; }
+  .formation .defense {
+    width: 25%; }
+  .formation .midfield {
+    width: 33.333%; }
+
+body {
+  background: #f3f3f3;
+  font-family: 'Montserrat', sans-serif; }
+
+* {
+  box-sizing: border-box; }
+
+.container {
+  margin: 50px auto;
+  width: 70%;
+  max-width: 885px; }
+
+.row {
+  width: 100%;
+  overflow: hidden; }
+
+.fl {
+  float: left; }
+
+.fr {
+  float: right; }
+
+.right {
+  text-align: right; }
+
+.left {
+  text-align: left; }
+
+.card {
+  width: 380px;
+  background: #fcfcfc;
+  border-radius: 5px;
+  box-shadow: 0 4px 20px #999;
+  margin-bottom: 100px;
+  float: left;
+  margin: 0 30px; }
+
+.header {
+  width: 100%;
+  height: 150px;
+  background: #FFF;
+  box-shadow: 0 1px 4px #eaeaea;
+  border-radius: 5px 5px 0 0; }
+
+#nav {
+  height: 70px;
+  background: #313643;
+  width: 100%;
+  border-radius: 0 0 5px 5px;
+  float: left; }
+  #nav a {
+    width: 25%;
+    display: block;
+    padding: 16px 20px;
+    text-align: center;
+    float: left; }
+    #nav a img {
+      width: 40px; }
+
+.team,
+.info {
+  float: left; }
+
+.team {
+  width: 105px;
+  text-align: center;
+  padding: 40px 34px 25px 34px; }
+  .team img {
+    width: 100%; }
+  .team h2 {
+    color: #333;
+    font-size: 1em;
+    margin: 8px 0 0 0; }
+
+.info {
+  width: 170px;
+  text-align: center;
+  padding-top: 40px; }
+  .info h1 {
+    font-size: 1em;
+    color: #8c8c8c;
+    margin-top: 0; }
+  .info p {
+    font-size: 0.9em;
+    margin: 5px 0; }
+
+.timeline {
+  position: relative;
+  padding: 60px 40px 20px 40px;
+  float: left;
+  width: 100%; }
+  .timeline .score {
+    width: 170px;
+    height: 85px;
+    overflow: hidden;
+    position: absolute;
+    top: -50px;
+    left: 105px;
+    box-shadow: 0 3px 15px #eaeaea; }
+    .timeline .score h3 {
+      font-size: 3em;
+      color: #333;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      padding: 13px 20px;
+      width: 50%;
+      text-align: center;
+      background: #fcfcfc;
+      margin: 0;
+      float: left; }
+    .timeline .score .winner {
+      background: #7533e2;
+      color: #FFF; }
+  .timeline .col {
+    width: 50%; }
+    .timeline .col .event {
+      height: 40px;
+      background: #FFF;
+      box-shadow: 0 1px 4px #eaeaea;
+      padding: 8px 10px;
+      color: #8c8c8c;
+      margin-bottom: 20px;
+      display: inline-block; }
+      .timeline .col .event span {
+        display: block;
+        margin-top: 3px;
+        text-align: right; }
+        .timeline .col .event span strong {
+          color: #333; }
+      .timeline .col .event img {
+        width: 15px;
+        margin-right: 10px; }
+      .timeline .col .event img.fl {
+        margin-right: 0;
+        margin-left: 10px; }
+      .timeline .col .event .goal {
+        margin-top: 4px; }
+
+.header > h1 {
+  text-align: center;
+  font-size: 1em;
+  color: #8c8c8c;
+  margin: 0 0 50px 0;
+  padding-top: 40px; }
+
+.tabs a {
+  display: inline-block;
+  width: 50%;
+  color: #333;
+  font-size: 1em;
+  margin: 0;
+  text-align: center;
+  float: left;
+  padding-bottom: 17px;
+  text-decoration: none; }
+  .tabs a.selected {
+    border-bottom: 5px solid #7533e2; }
+
+.formation {
+  height: 464px;
+  padding: 40px; }
+  .formation .field {
+    background: url("http://i.imgur.com/pt3Qdcs.png") center center no-repeat;
+    height: 386px;
+    background-size: contain; }
+  .formation .player {
+    text-align: center;
+    margin-bottom: 20px; }
+    .formation .player img {
+      width: 45px; }
+    .formation .player p {
+      text-align: center;
+      margin: 0;
+      font-size: 0.8em;
+      color: #666; }
+  .formation .defense {
+    width: 25%; }
+  .formation .midfield {
+    width: 33.333%; }
