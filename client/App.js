@@ -1,3 +1,4 @@
+/// <reference path="../typings/tsd.d.ts" />
 var angular = require("angular");
 require("./scoreboard/scoreboard");
 require("./App.scss");
