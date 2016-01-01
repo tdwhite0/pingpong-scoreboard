@@ -6,6 +6,10 @@ define(["require", "exports", './Player', './Point', './MatchHistory', './Player
             this.playerOne = new Player("PlayerOne");
             this.playerTwo = new Player("PlayerTwo");
         }
+        Match.prototype.getPlayerScore = function (playerNumber) {
+            var player = this.get_player(playerNumber);
+            return player.score;
+        };
         Match.prototype.awardPoint = function (playerNumber) {
             var scoringPlayer = this.get_player(playerNumber);
             this.matchHistory.logPoint(new Point(scoringPlayer));

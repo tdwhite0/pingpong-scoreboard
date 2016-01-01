@@ -15,7 +15,11 @@ class Match {
     private matchWinner: Player;
     private winnersScore: number;
     private losersScore: number;
-    private matchHistory: MatchHistory;    
+    private matchHistory: MatchHistory; 
+    
+    
+    
+      
     
 
     constructor() {
@@ -23,6 +27,11 @@ class Match {
         this.matchHistory = new MatchHistory();
         this.playerOne = new Player("PlayerOne");   
         this.playerTwo = new Player("PlayerTwo");
+    }
+
+    public getPlayerScore(playerNumber: PlayerNumber) : number {
+        let player: Player = this.get_player(playerNumber);
+        return player.score;
     }
 
     public awardPoint(playerNumber: PlayerNumber): number {       
