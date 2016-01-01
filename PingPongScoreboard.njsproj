@@ -20,6 +20,7 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
     <Compile Include="webpack.config.js" />
+    <Content Include="client\App.html" />
     <Content Include="client\historyDisplay\historyDisplay.html" />
     <Content Include="index.html" />
     <Content Include="package.json" />
@@ -29,7 +30,10 @@
     <Compile Include="index.js" />
     <Content Include="web.config" />
     <TypeScriptCompile Include="app.ts" />
+    <TypeScriptCompile Include="client\App.spec.ts" />
+    <TypeScriptCompile Include="client\App.ts" />
     <TypeScriptCompile Include="client\historyDisplay\historyDisplay.ts" />
+    <TypeScriptCompile Include="client\lib.d.ts" />
     <TypeScriptCompile Include="shared\Match.ts" />
     <TypeScriptCompile Include="shared\MatchHistory.ts" />
     <TypeScriptCompile Include="shared\Player.ts" />
