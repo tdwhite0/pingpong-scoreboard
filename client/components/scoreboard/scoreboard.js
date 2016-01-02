@@ -4,8 +4,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
 var angular = require('angular');
-var PlayerNumber = require("../../shared/PlayerNumber");
-var Match = require("../../shared/Match");
+var PlayerNumber = require("../../../shared/PlayerNumber");
+var Match = require("../../../shared/Match");
 require('angular-socket-io');
 require("./scoreboard.scss");
 var Scoreboard;

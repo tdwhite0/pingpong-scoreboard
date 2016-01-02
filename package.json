@@ -18,6 +18,7 @@
     "angular": "^1.4.8",
     "angular-filter": "^0.5.8",
     "angular-socket-io": "^0.7.0",
+    "angular-ui-router": "^0.2.15",
     "bootstrap": "^3.3.6",
     "bootstrap-webpack": "0.0.5",
     "css-loader": "^0.23.1",
@@ -46,6 +47,7 @@
     "style-loader": "^0.13.0",
     "ts-loader": "^0.7.2",
     "typescript": "^1.7.5",
+    "url-loader": "^0.5.7",
     "webpack": "^1.12.9"
   }
 }

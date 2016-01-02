@@ -1,9 +1,9 @@
 import angular = require('angular');
-import Player = require("../../shared/Player");
-import PlayerNumber = require("../../shared/PlayerNumber");
-import MatchHistory = require("../../shared/MatchHistory");
-import Point = require("../../shared/Point");
-import Match = require("../../shared/Match");
+import Player = require("../../../shared/Player");
+import PlayerNumber = require("../../../shared/PlayerNumber");
+import MatchHistory = require("../../../shared/MatchHistory");
+import Point = require("../../../shared/Point");
+import Match = require("../../../shared/Match");
 
 
 require('angular-socket-io');

@@ -1,6 +1,6 @@
 ﻿import angular = require('angular');
-import MatchHistory = require("../../shared/MatchHistory");
-import Point = require("../../shared/Point");
+import MatchHistory = require("../../../shared/MatchHistory");
+import Point = require("../../../shared/Point");
 require("angular-filter");
 
 
