@@ -19,6 +19,7 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Compile Include="karma.conf.js" />
     <Compile Include="webpack.config.js" />
     <Content Include="client\App.html" />
     <Content Include="client\historyDisplay\historyDisplay.html" />
@@ -34,6 +35,7 @@
     <TypeScriptCompile Include="client\App.ts" />
     <TypeScriptCompile Include="client\historyDisplay\historyDisplay.ts" />
     <TypeScriptCompile Include="client\lib.d.ts" />
+    <TypeScriptCompile Include="shared\Match.spec.ts" />
     <TypeScriptCompile Include="shared\Match.ts" />
     <TypeScriptCompile Include="shared\MatchHistory.ts" />
     <TypeScriptCompile Include="shared\Player.ts" />
@@ -73,7 +75,7 @@
     <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
     <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
     <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
-    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
     <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
     <TypeScriptOutFile />
     <TypeScriptOutDir />

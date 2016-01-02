@@ -29172,6 +29172,10 @@
 	        this.playerOne = new Player("PlayerOne");
 	        this.playerTwo = new Player("PlayerTwo");
 	    }
+	    Match.prototype.getPlayerScore = function (playerNumber) {
+	        var player = this.get_player(playerNumber);
+	        return player.score;
+	    };
 	    Match.prototype.awardPoint = function (playerNumber) {
 	        var scoringPlayer = this.get_player(playerNumber);
 	        this.matchHistory.logPoint(new Point(scoringPlayer));
@@ -29756,7 +29760,7 @@
 /* 15 */
 /***/ function(module, exports) {
 
-	var path = 'C:/Users/twhite/Documents/GitHub/pingpong-scoreboard/client/scoreboard/scoreboard.html';
+	var path = 'C:/Users/tdwhi_000/Documents/GitHub/pingpong-scoreboard/client/scoreboard/scoreboard.html';
 	var html = "\r\n    <div class=\"card\">\r\n        <div class=\"header\">\r\n            <div class=\"team\">\r\n                <img src=\"https://upload.wikimedia.org/wikipedia/en/thumb/9/97/FIGC_logo.svg/706px-FIGC_logo.svg.png\" />\r\n                <h2>ITA</h2>\r\n            </div>\r\n            <div class=\"info\">\r\n                <h1>MATCH</h1>\r\n                <p>{{ vm.matchDate | date:'MM/dd/yyyy' }}</p>\r\n            </div>\r\n            <div class=\"team\">\r\n                <img src=\"https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Royal_Netherlands_Football_Association_Logo.svg/300px-Royal_Netherlands_Football_Association_Logo.svg.png\" />\r\n                <h2>NED</h2>\r\n            </div>\r\n        </div>\r\n        <div class=\"timeline\">\r\n            <div class=\"score\">\r\n                <h3 ng-class=\"{ 'winner' : vm.playerOne.score > vm.playerTwo.score }\">{{ vm.playerOne.score }}</h3>\r\n                <h3 ng-class=\"{ 'winner' : vm.playerTwo.score > vm.playerOne.score }\">{{ vm.playerTwo.score }}</h3>\r\n            </div>\r\n            \r\n        </div>\r\n      \r\n        <match-history entries=\"vm.matchHistory\"></match-history>\r\n    </div>\r\n\r\n\r\n\r\n\r\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
@@ -29804,7 +29808,7 @@
 /* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var path = 'C:/Users/twhite/Documents/GitHub/pingpong-scoreboard/client/historyDisplay/historyDisplay.html';
+	var path = 'C:/Users/tdwhi_000/Documents/GitHub/pingpong-scoreboard/client/historyDisplay/historyDisplay.html';
 	var html = "<h1>Match History</h1>\r\n<table>\r\n    <tr>\r\n        <th>Player One</th>\r\n        <th>Player Two</th>\r\n    </tr>\r\n    <tr ng-repeat=\"entry in vm.entries.points\">\r\n      \r\n        <td><span ng-if=\"entry._pointWinner === 'PlayerOne'\"><img src=\"" + __webpack_require__(19) + "\" /></span></td>\r\n        <td><span ng-if=\"entry._pointWinner === 'PlayerTwo'\"><img src=\"" + __webpack_require__(19) + "\" /></span></td>\r\n    </tr>\r\n\r\n</table>";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
@@ -29859,7 +29863,7 @@
 /* 22 */
 /***/ function(module, exports) {
 
-	var path = 'C:/Users/twhite/Documents/GitHub/pingpong-scoreboard/client/App.html';
+	var path = 'C:/Users/tdwhi_000/Documents/GitHub/pingpong-scoreboard/client/App.html';
 	var html = "<div>\r\n    <scoreboard></scoreboard>\r\n\r\n\r\n</div>";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
