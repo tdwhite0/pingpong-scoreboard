@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-let server = http.createServer(app);
+let server = http.createServer(app); 
 let socketio = io(http).listen(server);
 
 
@@ -49,6 +49,14 @@ app.get('/two', function (req, res) {
 app.get('/two-down', function (req, res) {
     res.sendStatus(200);
     socketio.emit('two-down', { for: 'everyone' });
+});
+
+app.get('/log', function (req, res) {
+    res.sendStatus(200);
+});
+
+app.post('/log', function (req, res) {
+    res.send(200, JSON.stringify(req)); 
 });
 
 server.listen(port);

@@ -32,6 +32,12 @@ module.exports = {
                 test: /\.scss$/,
                 loader: "style-loader!css-loader!sass-loader"
             },
+
+            {
+                //IMAGE LOADER
+                test: /\.(jpe?g|png|gif|svg)$/i,
+                loader: 'file'
+            }
             //{
             //    test: /\.html$/,
             //    loader: 'ngtemplate?pathSep=\\!html'

@@ -48,8 +48,8 @@
 	var angular = __webpack_require__(1);
 	__webpack_require__(3);
 	__webpack_require__(16);
-	__webpack_require__(19);
-	var templateUrl = __webpack_require__(21);
+	__webpack_require__(20);
+	var templateUrl = __webpack_require__(22);
 	angular.module("PingPong", []);
 	var app = angular.module("PingPong", ["Scoreboard", "MatchHistory"]);
 	app.directive('mainApp', function () {
@@ -29173,6 +29173,10 @@
 	        this.playerOne = new Player("PlayerOne");
 	        this.playerTwo = new Player("PlayerTwo");
 	    }
+	    Match.prototype.getPlayerScore = function (playerNumber) {
+	        var player = this.get_player(playerNumber);
+	        return player.score;
+	    };
 	    Match.prototype.awardPoint = function (playerNumber) {
 	        var scoringPlayer = this.get_player(playerNumber);
 	        this.matchHistory.logPoint(new Point(scoringPlayer));
@@ -29204,6 +29208,10 @@
 	        else {
 	            return false;
 	        }
+	    };
+	    Match.prototype.declareWinner = function (player) {
+	        this.matchWinner = player;
+	        this.winnersScore = player.score;
 	    };
 	    return Match;
 	})();
@@ -29754,7 +29762,7 @@
 /***/ function(module, exports) {
 
 	var path = 'C:/dev/pingpong-scoreboard/client/scoreboard/scoreboard.html';
-	var html = "\n    <div class=\"card\">\n        <div class=\"header\">\n            <div class=\"team\">\n                <img src=\"https://upload.wikimedia.org/wikipedia/en/thumb/9/97/FIGC_logo.svg/706px-FIGC_logo.svg.png\" />\n                <h2>ITA</h2>\n            <h1>\r\n                <i class=\"fa fa-plus symbolText fake-link\" ng-click=\"vm.awardPoint(0)\"></i>\r\n                <i class=\"fa fa-minus symbolText fake-link\" ng-click=\"vm.subtractPoint(0)\"></i>\r\n            </h1>\r\n            </div>\n            <div class=\"info\">\n                <h1>MATCH</h1>\n                <p>{{ vm.matchDate | date:'MM/dd/yyyy' }}</p>\n            </div>\n            <div class=\"team\">\n                <img src=\"https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Royal_Netherlands_Football_Association_Logo.svg/300px-Royal_Netherlands_Football_Association_Logo.svg.png\" />\n                <h2>NED</h2>\n                <h1>\r\n                    <i class=\"fa fa-plus symbolText fake-link\" ng-click=\"vm.awardPoint(1)\"></i>\r\n                    <i class=\"fa fa-minus symbolText fake-link\" ng-click=\"vm.subtractPoint(1)\"></i>\r\n                </h1>\r\n            </div>\n        </div>\n        <div class=\"timeline\">\n            <div class=\"score\">\n                <h3 ng-class=\"{ 'winner' : vm.playerOne.score > vm.playerTwo.score }\">{{ vm.playerOne.score }}</h3>\n                <h3 ng-class=\"{ 'winner' : vm.playerTwo.score > vm.playerOne.score }\">{{ vm.playerTwo.score }}</h3>\n            </div>\n        </div>\n        \n        <match-history entries=\"vm.matchHistory\"></match-history>\n    </div>\n\n\n\n\n";
+	var html = "\n    <div class=\"card\">\n        <div class=\"header\">\n            <div class=\"team\">\n                <img src=\"https://upload.wikimedia.org/wikipedia/en/thumb/9/97/FIGC_logo.svg/706px-FIGC_logo.svg.png\" />\n                <h2>ITA</h2>\n            <h1>\r\n                <i class=\"fa fa-plus symbolText fake-link\" ng-click=\"vm.awardPoint(0)\"></i>\r\n                <i class=\"fa fa-minus symbolText fake-link\" ng-click=\"vm.subtractPoint(0)\"></i>\r\n            </h1>\r\n            </div>\n            <div class=\"info\">\n                <h1>MATCH</h1>\n                <p>{{ vm.matchDate | date:'MM/dd/yyyy' }}</p>\n            </div>\n            <div class=\"team\">\n                <img src=\"https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Royal_Netherlands_Football_Association_Logo.svg/300px-Royal_Netherlands_Football_Association_Logo.svg.png\" />\n                <h2>NED</h2>\n                <h1>\r\n                    <i class=\"fa fa-plus symbolText fake-link\" ng-click=\"vm.awardPoint(1)\"></i>\r\n                    <i class=\"fa fa-minus symbolText fake-link\" ng-click=\"vm.subtractPoint(1)\"></i>\r\n                </h1>\r\n            </div>\n        </div>\n        <div class=\"timeline\">\n            <div class=\"score\">\n                <h3 ng-class=\"{ 'winner' : vm.playerOne.score > vm.playerTwo.score }\">{{ vm.playerOne.score }}</h3>\n                <h3 ng-class=\"{ 'winner' : vm.playerTwo.score > vm.playerOne.score }\">{{ vm.playerTwo.score }}</h3>\n            </div>\n        </div>\n      \n      \n    </div>\n\n\n\n\n";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
@@ -29799,10 +29807,10 @@
 
 /***/ },
 /* 18 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	var path = 'C:/dev/pingpong-scoreboard/client/historyDisplay/historyDisplay.html';
-	var html = "<h1>Match History</h1>\n<table>\n    <tr>\n        <th>Player One</th>\n        <th>Player Two</th>\n    </tr>\n    <tr ng-repeat=\"entry in vm.entries.points\">\n      \n        <td><span ng-if=\"entry._pointWinner === 'PlayerOne'\">OK</span></td>\n        <td><span ng-if=\"entry._pointWinner === 'PlayerTwo'\">OK</span></td>\n    </tr>\n\n</table>";
+	var html = "<h1>Match History</h1>\r\n<table>\r\n    <tr>\r\n        <th>Player One</th>\r\n        <th>Player Two</th>\r\n    </tr>\r\n    <tr ng-repeat=\"entry in vm.entries.points\">\r\n      \r\n        <td><span ng-if=\"entry._pointWinner === 'PlayerOne'\"><img src=\"" + __webpack_require__(19) + "\" /></span></td>\r\n        <td><span ng-if=\"entry._pointWinner === 'PlayerTwo'\"><img src=\"" + __webpack_require__(19) + "\" /></span></td>\r\n    </tr>\r\n\r\n</table>";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
@@ -29810,10 +29818,16 @@
 /* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
+	module.exports = __webpack_require__.p + "d7f402d01aff2ce1a9b275e3c42a98e1.jpg";
+
+/***/ },
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(20);
+	var content = __webpack_require__(21);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(14)(content, {});
@@ -29833,7 +29847,7 @@
 	}
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(13)();
@@ -29847,11 +29861,11 @@
 
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports) {
 
 	var path = 'C:/dev/pingpong-scoreboard/client/App.html';
-	var html = "<div>\n    <scoreboard></scoreboard>\n\n\n</div>";
+	var html = "<div>\r\n    <scoreboard></scoreboard>\r\n\r\n\r\n</div>";
 	window.angular.module('ng').run(['$templateCache', function(c) { c.put(path, html) }]);
 	module.exports = path;
 
