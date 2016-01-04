@@ -3,6 +3,8 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
+var sprity = require('sprity');
+var gulpif = require('gulp-if');
 //var ts = require('gulp-typescript');
 
 //gulp.task('default', function () {
@@ -24,6 +26,24 @@ gulp.task('copyFonts', function () {
     return gulp.src('./node_modules/font-awesome/fonts/fontawesome-webfont.*').pipe(gulp.dest('public/fonts'));
 });
 
+gulp.task('sprites', function () {
+    return sprity.src({
+        src: './images/flags/flags/64/**/*.{png,jpg}',
+        style: './sprite.css',
+        // ... other optional options 
+        // for example if you want to generate scss instead of css 
+        processor: 'sass', // make sure you have installed sprity-sass 
+    })
+  .pipe(gulpif('*.png', gulp.dest('./public/images/'), gulp.dest('./public/css/')))
+});
+
+gulp.task('copyFlags', function () {
+    // create sprites
+    
+    // copy sprite'd images
+    return gulp.src('./images/flags/**').pipe(gulp.dest('public/images/flags'));
+});
+
 gulp.task('sass', function () {
   gulp.src('./client/**/*.scss')
     .pipe(sass().on('error', sass.logError))
@@ -42,4 +62,4 @@ gulp.task('sass:watch', function () {
 //    .pipe(gulp.dest('public/'))
 //});
 
-gulp.task('default',['sass','copyFonts','webpack'])
+gulp.task('default',['sass','copyFonts','sprites','webpack'])
