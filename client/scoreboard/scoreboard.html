@@ -1,37 +1,32 @@
-
-    <div class="card">
-        <div class="header">
-            <div class="team">
-                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/9/97/FIGC_logo.svg/706px-FIGC_logo.svg.png" />
-                <h2>ITA</h2>
+<div class="card">
+    <div class="header">
+        <div class="team">
+            <span class="icon icon-af" style="width:128px;height:128px;"></span>
+            <h2>ITA</h2>
             <h1>
                 <i class="fa fa-plus symbolText fake-link" ng-click="vm.awardPoint(0)"></i>
                 <i class="fa fa-minus symbolText fake-link" ng-click="vm.subtractPoint(0)"></i>
             </h1>
-            </div>
-            <div class="info">
-                <h1>MATCH</h1>
-                <p>{{ vm.matchDate | date:'MM/dd/yyyy' }}</p>
-            </div>
-            <div class="team">
-                <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Royal_Netherlands_Football_Association_Logo.svg/300px-Royal_Netherlands_Football_Association_Logo.svg.png" />
-                <h2>NED</h2>
-                <h1>
-                    <i class="fa fa-plus symbolText fake-link" ng-click="vm.awardPoint(1)"></i>
-                    <i class="fa fa-minus symbolText fake-link" ng-click="vm.subtractPoint(1)"></i>
-                </h1>
-            </div>
         </div>
-        <div class="timeline">
-            <div class="score">
-                <h3 ng-class="{ 'winner' : vm.playerOne.score > vm.playerTwo.score }">{{ vm.playerOne.score }}</h3>
-                <h3 ng-class="{ 'winner' : vm.playerTwo.score > vm.playerOne.score }">{{ vm.playerTwo.score }}</h3>
-            </div>
+        <div class="info">
+            <h1>MATCH</h1>
+            <p>{{ vm.matchDate | date:'MM/dd/yyyy' }}</p>
         </div>
-      
-      
+        <div class="team">
+            <img src="https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Royal_Netherlands_Football_Association_Logo.svg/300px-Royal_Netherlands_Football_Association_Logo.svg.png" />
+            <h2>NED</h2>
+            <h1>
+                <i class="fa fa-plus symbolText fake-link" ng-click="vm.awardPoint(1)"></i>
+                <i class="fa fa-minus symbolText fake-link" ng-click="vm.subtractPoint(1)"></i>
+            </h1>
+        </div>
     </div>
-
-
+    <div class="timeline">
+        <div class="score">
+            <h3 ng-class="{ 'winner' : vm.playerOne.score > vm.playerTwo.score }">{{ vm.playerOne.score }}</h3>
+            <h3 ng-class="{ 'winner' : vm.playerTwo.score > vm.playerOne.score }">{{ vm.playerTwo.score }}</h3>
+        </div>
+    </div>
+</div>
 
 

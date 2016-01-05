@@ -26,13 +26,10 @@ gulp.task('copyFonts', function () {
     return gulp.src('./node_modules/font-awesome/fonts/fontawesome-webfont.*').pipe(gulp.dest('public/fonts'));
 });
 
-gulp.task('sprites', function () {
+gulp.task('spriteFlags', function () {
     return sprity.src({
-        src: './images/flags/flags/64/**/*.{png,jpg}',
-        style: './sprite.css',
-        // ... other optional options 
-        // for example if you want to generate scss instead of css 
-        processor: 'sass', // make sure you have installed sprity-sass 
+        src: './images/flags/flags_iso/128/**/*.{png,jpg}',
+        style: './sprite.css'
     })
   .pipe(gulpif('*.png', gulp.dest('./public/images/'), gulp.dest('./public/css/')))
 });
@@ -62,4 +59,4 @@ gulp.task('sass:watch', function () {
 //    .pipe(gulp.dest('public/'))
 //});
 
-gulp.task('default',['sass','copyFonts','sprites','webpack'])
+gulp.task('default',['spriteFlags','sass','copyFonts','webpack'])
