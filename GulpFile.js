@@ -5,16 +5,7 @@ var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var sprity = require('sprity');
 var gulpif = require('gulp-if');
-//var ts = require('gulp-typescript');
-
-//gulp.task('default', function () {
-//    return gulp.src(['app.ts', '!client/**/*.ts', '!server/**/*.ts' ])
-//        .pipe(ts({
-//        noImplicitAny: true,
-//        out: 'output.js'
-//    }))
-//        .pipe(gulp.dest('built/local'));
-//});
+var runSequence = require('run-sequence');
 
 var webpack = require('gulp-webpack');
 gulp.task('webpack', function () {
@@ -34,29 +25,26 @@ gulp.task('spriteFlags', function () {
   .pipe(gulpif('*.png', gulp.dest('./public/images/'), gulp.dest('./public/css/')))
 });
 
-gulp.task('copyFlags', function () {
-    // create sprites
-    
-    // copy sprite'd images
-    return gulp.src('./images/flags/**').pipe(gulp.dest('public/images/flags'));
-});
-
 gulp.task('sass', function () {
   gulp.src('./client/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(concat('app.css'))
     .pipe(gulp.dest('./css'));
 });
- 
-gulp.task('sass:watch', function () {
-  gulp.watch('./client/**/*.scss', ['sass','copyFonts']);
+
+gulp.task('watch', function () {
+    return runSequence('webpack --progress --colors --watch');
+
+    //runSequence('webpack webpack --progress --colors --watch',
+    //          ['build-scripts', 'build-styles'],
+    //          'build-html',
+    //          callback);
+
+    //gulp.task('default', ['spriteFlags', 'sass', 'copyFonts', 'webpack'])
 });
 
-/* not needed because of webpac?? */
-//gulp.task('tsc:compile', function () {
-//    gulp.src(['src/**/*.ts'])
-//    .pipe(typescript())
-//    .pipe(gulp.dest('public/'))
-//});
+gulp.task('sass:watch', function () {
+  return gulp.watch('./client/**/*.scss', ['sass','copyFonts']);
+});
 
 gulp.task('default',['spriteFlags','sass','copyFonts','webpack'])
